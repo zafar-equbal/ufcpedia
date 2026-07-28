@@ -1,6 +1,11 @@
 package com.ufcpedia.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table(name = "fighters")
@@ -11,17 +16,39 @@ public class Fighter {
 
     private Long id;
 
+    @NotBlank(message = "Fighter name is required")
+    @Size(max = 100)
     private String name;
+
+    @NotBlank(message = "Nickname is required")
     private String nickname;
+
+    @NotBlank(message = "Nationality is required")
     private String nationality;
+
+    @NotBlank(message = "Weight class is required")
     private String weightClass;
 
+    @NotNull
+    @PositiveOrZero
     private Integer wins;
+
+    @NotNull
+    @PositiveOrZero
     private Integer losses;
+
+    @NotNull
+    @PositiveOrZero
     private Integer draws;
 
+    @NotBlank(message = "Image URL is required")
+    @URL(message = "Enter a valid image URL")
     private String imageUrl;
+
+    @NotBlank(message = "About URL is required")
+    @URL(message = "Enter a valid URL")
     private String aboutUrl;
+
 
     public Fighter(){
     }

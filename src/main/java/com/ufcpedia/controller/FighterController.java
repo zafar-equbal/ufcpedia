@@ -4,7 +4,7 @@ import com.ufcpedia.entity.Fighter;
 import com.ufcpedia.service.FighterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,13 +25,13 @@ public class FighterController {
     }
 // Post
     @PostMapping
-    public Fighter addFighter(@RequestBody Fighter fighter) {
+    public Fighter addFighter(@Valid @RequestBody Fighter fighter) {
         return fighterService.saveFighter(fighter);
     }
 // Put
     @PutMapping("/{id}")
     public Fighter updateFighter(@PathVariable Long id,
-                                 @RequestBody Fighter fighter) {
+                                 @Valid @RequestBody Fighter fighter) {
         return fighterService.updateFighter(id, fighter);
     }
 // Delete
