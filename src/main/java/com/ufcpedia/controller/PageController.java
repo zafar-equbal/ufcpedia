@@ -27,4 +27,13 @@ public class PageController {
 
         return "edit-fighter";
     }
+
+    @GetMapping("/cards")
+    public String fighterCards(Model model) {
+
+        model.addAttribute("fighters",
+                fighterService.getAllFighters());
+
+        return "cards";
+    }
 }

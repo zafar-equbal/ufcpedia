@@ -49,6 +49,8 @@ public class Fighter {
     @URL(message = "Enter a valid URL")
     private String aboutUrl;
 
+    private String title;
+
 
     public Fighter(){
     }
@@ -64,6 +66,7 @@ public class Fighter {
         this.draws = draws;
         this.imageUrl = imageUrl;
         this.aboutUrl = aboutUrl;
+
     }
 
     public Long getId() {
@@ -144,6 +147,14 @@ public class Fighter {
 
     public void setAboutUrl(String aboutUrl) {
         this.aboutUrl = aboutUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
 

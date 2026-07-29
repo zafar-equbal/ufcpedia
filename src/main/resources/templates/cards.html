@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <title>UFCPedia</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+  <nav class="navbar navbar-dark bg-dark rounded mb-4">
+
+    <div class="container-fluid">
+
+        <span class="navbar-brand mb-0 h1">
+            🥊 UFCPedia
+        </span>
+
+      <a href="/add-fighter"
+         class="btn btn-success">
+        + Add Fighter
+      </a>
+
+    </div>
+
+  </nav>
+
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+
+      <div class="card text-center shadow">
+
+        <div class="card-body">
+
+          <h5>Total Fighters</h5>
+
+          <h2 th:text="${fighters.size()}"></h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4 mb-4"
+         th:each="fighter : ${fighters}">
+
+      <div class="card shadow h-100">
+
+        <img th:src="${fighter.imageUrl}"
+             class="card-img-top"
+             style="height:300px; object-fit:cover;">
+
+        <div class="card-body">
+
+          <h4 th:text="${fighter.name}"></h4>
+
+          <h6 class="text-muted"
+              th:text="${fighter.nickname}"></h6>
+
+          <p>
+
+            <strong>Nationality:</strong>
+
+            <span th:text="${fighter.nationality}"></span>
+
+          </p>
+
+          <p>
+
+            <strong>Weight:</strong>
+
+            <span th:text="${fighter.weightClass}"></span>
+
+          </p>
+
+          <p>
+
+            <strong>Record:</strong>
+
+            <span th:text="${fighter.wins}"></span>
+
+            -
+
+            <span th:text="${fighter.losses}"></span>
+
+            -
+
+            <span th:text="${fighter.draws}"></span>
+
+          </p>
+
+        </div>
+
+        <div class="card-footer text-center">
+
+          <a th:href="${fighter.aboutUrl}"
+             target="_blank"
+             class="btn btn-dark btn-sm">
+
+            View Profile
+
+          </a>
+
+          <a th:href="@{/edit-fighter/{id}(id=${fighter.id})}"
+             class="btn btn-primary btn-sm">
+
+            Edit
+
+          </a>
+
+          <a th:href="@{/delete-fighter/{id}(id=${fighter.id})}"
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('Delete fighter?')">
+
+            Delete
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+</html>
