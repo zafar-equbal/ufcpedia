@@ -19,6 +19,24 @@
     UFC Fighters
   </h1>
 
+  <form th:action="@{/fighters-page}" method="get" class="row mb-3">
+
+    <div class="col-md-8">
+      <input type="text"
+             name="keyword"
+             class="form-control"
+             placeholder="Search by name, nickname, nationality or weight class"
+             th:value="${keyword}">
+    </div>
+
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary">
+        Search
+      </button>
+    </div>
+
+  </form>
+
   <div class="text-end mb-3">
 
     <a href="/add-fighter"

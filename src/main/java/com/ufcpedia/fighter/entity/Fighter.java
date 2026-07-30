@@ -1,4 +1,4 @@
-package com.ufcpedia.entity;
+package com.ufcpedia.fighter.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

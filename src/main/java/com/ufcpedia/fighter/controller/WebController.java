@@ -1,7 +1,7 @@
-package com.ufcpedia.controller;
+package com.ufcpedia.fighter.controller;
 
-import com.ufcpedia.entity.Fighter;
-import com.ufcpedia.service.FighterService;
+import com.ufcpedia.fighter.entity.Fighter;
+import com.ufcpedia.fighter.service.FighterService;
 
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -21,14 +22,20 @@ public class WebController {
     private FighterService fighterService;
 
     @GetMapping("/fighters-page")
-    public String fightersPage(Model model) {
+    public String fightersPage(
+            @RequestParam(required = false) String keyword,
+            Model model) {
 
-        model.addAttribute("fighters",
-                fighterService.getAllFighters());
+        if (keyword != null && !keyword.isBlank()) {
+            model.addAttribute("fighters", fighterService.searchFighters(keyword));
+        } else {
+            model.addAttribute("fighters", fighterService.getAllFighters());
+        }
+
+        model.addAttribute("keyword", keyword);
 
         return "fighters";
     }
-
     @GetMapping("/add-fighter")
     public String addFighterPage(Model model){
         model.addAttribute("fighter", new Fighter());

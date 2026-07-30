@@ -69,6 +69,14 @@
           <h6 class="text-muted"
               th:text="${fighter.nickname}"></h6>
 
+          <p th:if="${fighter.title != null and !fighter.title.isEmpty()}">
+            <strong>Title:</strong>
+
+            <span class="badge bg-warning text-dark"
+                  th:text="${fighter.title}">
+    </span>
+          </p>
+
           <p>
 
             <strong>Nationality:</strong>

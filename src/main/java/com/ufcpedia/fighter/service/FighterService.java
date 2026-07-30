@@ -1,7 +1,7 @@
-package com.ufcpedia.service;
+package com.ufcpedia.fighter.service;
 
-import com.ufcpedia.entity.Fighter;
-import com.ufcpedia.repository.FighterRepository;
+import com.ufcpedia.fighter.entity.Fighter;
+import com.ufcpedia.fighter.repository.FighterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +29,8 @@ public class FighterService {
         fighterRepository.deleteById(id);
     }
 
+
+
     public Fighter updateFighter(Long id, Fighter updatedFighter) {
         Fighter fighter = fighterRepository.findById(id).orElse(null);
 
@@ -47,5 +49,32 @@ public class FighterService {
         }
 
         return null;
+    }
+
+    public List<Fighter> searchFighters(String keyword) {
+
+        return fighterRepository
+                .findByNameContainingIgnoreCaseOrNicknameContainingIgnoreCaseOrNationalityContainingIgnoreCaseOrWeightClassContainingIgnoreCase(
+                        keyword,
+                        keyword,
+                        keyword,
+                        keyword
+                );
+    }
+
+    public long getTotalFighters() {
+        return fighterRepository.count();
+    }
+
+    public long getChampions() {
+        return fighterRepository.countByTitleIsNotNull();
+    }
+
+    public long getWeightClasses() {
+        return fighterRepository.countDistinctWeightClasses();
+    }
+
+    public long getEliteFighters() {
+        return fighterRepository.countByWinsGreaterThanEqual(20);
     }
 }

@@ -1,7 +1,7 @@
-package com.ufcpedia.controller;
+package com.ufcpedia.fighter.controller;
 
-import com.ufcpedia.entity.Fighter;
-import com.ufcpedia.service.FighterService;
+import com.ufcpedia.fighter.entity.Fighter;
+import com.ufcpedia.fighter.service.FighterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
