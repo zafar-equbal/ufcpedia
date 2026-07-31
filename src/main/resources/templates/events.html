@@ -20,6 +20,46 @@
 
   </div>
 
+  <!-- SEARCH BAR -->
+  <form th:action="@{/events}" method="get" class="mb-4">
+
+    <div class="input-group">
+
+      <input type="text"
+             name="keyword"
+             class="form-control"
+             placeholder="Search by event, fighter, country..."
+             th:value="${keyword}">
+
+      <button class="btn btn-dark" type="submit">
+        Search
+      </button>
+
+    </div>
+
+  </form>
+
+  <div class="mb-4">
+
+    <a href="/events" class="btn btn-outline-dark me-2">
+      All
+    </a>
+
+    <a href="/events?status=Upcoming" class="btn btn-outline-success me-2">
+      Upcoming
+    </a>
+
+    <a href="/events?status=Completed" class="btn btn-outline-secondary me-2">
+      Completed
+    </a>
+
+    <a href="/events?status=Cancelled" class="btn btn-outline-danger">
+      Cancelled
+    </a>
+
+  </div>
+
+  <!-- EVENT CARDS -->
   <div class="row">
 
     <div class="col-md-4 mb-4"
@@ -37,9 +77,9 @@
 
             <span class="badge rounded-pill"
                   th:classappend="${event.status == 'Upcoming'} ? 'bg-success' :
-                                  (${event.status == 'Completed'} ? 'bg-secondary' : 'bg-danger')"
+                                              (${event.status == 'Completed'} ? 'bg-secondary' : 'bg-danger')"
                   th:text="${event.status}">
-            </span>
+                        </span>
 
           </div>
 
@@ -96,13 +136,11 @@
 
       </div>
 
-      </div>
-
     </div>
 
   </div>
 
-
+</div>
 
 </body>
 </html>

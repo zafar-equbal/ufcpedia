@@ -4,7 +4,7 @@ import com.ufcpedia.event.entity.Event;
 import com.ufcpedia.event.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.ufcpedia.event.entity.Event;
 import java.util.List;
 
 @Service
@@ -27,5 +27,34 @@ public class EventService {
 
     public Event getEvent(Long id) {
         return eventRepository.findById(id).orElse(null);
+    }
+
+    public List<Event> searchEvents(String keyword) {
+
+        return eventRepository
+                .findByNameContainingIgnoreCaseOrLocationContainingIgnoreCaseOrCountryContainingIgnoreCaseOrMainEventContainingIgnoreCase(
+                        keyword,
+                        keyword,
+                        keyword,
+                        keyword
+                );
+    }
+
+    public List<Event> getEventsByStatus(String status) {
+        return eventRepository.findByStatus(status);
+    }
+
+    public Event getFeaturedEvent() {
+
+        return eventRepository
+                .findFirstByStatusOrderByEventDateAsc("Upcoming")
+                .orElse(null);
+
+    }
+
+    public List<Event> getUpcomingEvents() {
+
+        return eventRepository.findTop3ByStatusOrderByEventDateAsc("Upcoming");
+
     }
 }

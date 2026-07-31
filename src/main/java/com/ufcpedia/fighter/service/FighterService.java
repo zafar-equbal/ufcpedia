@@ -77,4 +77,12 @@ public class FighterService {
     public long getEliteFighters() {
         return fighterRepository.countByWinsGreaterThanEqual(20);
     }
+    public List<Fighter> getChampionsList() {
+        return fighterRepository.findByTitleIsNotNull();
+    }
+    public List<Fighter> getLatestFighters() {
+
+        return fighterRepository.findTop4ByOrderByIdDesc();
+
+    }
 }

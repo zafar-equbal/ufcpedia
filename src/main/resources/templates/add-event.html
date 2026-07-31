@@ -13,6 +13,7 @@
   <h2 class="mb-4">➕ Add UFC Event</h2>
 
   <form th:action="@{/save-event}" th:object="${event}" method="post">
+    <input type="hidden" th:field="*{id}">
 
     <div class="mb-3">
       <label>Event Name</label>

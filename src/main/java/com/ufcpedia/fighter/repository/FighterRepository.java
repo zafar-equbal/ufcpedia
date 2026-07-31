@@ -25,4 +25,8 @@ public interface FighterRepository extends JpaRepository<Fighter, Long> {
     long countDistinctWeightClasses();
 
     long countByWinsGreaterThanEqual(int wins);
+
+    List<Fighter> findByTitleIsNotNull();
+
+    List<Fighter> findTop4ByOrderByIdDesc();
 }
