@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head> <link rel="icon"type="image/png" th:href="@{/images/favicon.png}">
+
+  <title>Fight Card</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <style>
+
+    body{
+        background:#0b0b0b;
+        color:white;
+    }
+
+    .hero{
+
+        background:#161616;
+
+        padding:50px;
+
+        border-bottom:4px solid #d20a11;
+
+    }
+
+    .fighter-card{
+
+        background:#1b1b1b;
+
+        border:1px solid #333;
+
+        border-radius:20px;
+
+        transition:.3s;
+
+    }
+
+    .fighter-card:hover{
+
+        transform:translateY(-8px);
+
+        border-color:#d20a11;
+
+    }
+
+    .fighter-img{
+
+        width:100%;
+
+        height:350px;
+
+        object-fit:cover;
+
+        border-radius:20px 20px 0 0;
+
+    }
+
+    .vs{
+
+        font-size:70px;
+
+        color:#d20a11;
+
+        font-weight:bold;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<!-- ================= EVENT HEADER ================= -->
+
+<div class="hero text-center">
+
+  <h1 class="display-4 fw-bold"
+      th:text="${event.name}">
+  </h1>
+
+  <h3 class="text-danger"
+      th:text="${event.mainEvent}">
+  </h3>
+
+  <p class="mt-3">
+
+     <span th:text="${event.eventDate}"></span>
+
+    |
+
+    📍 <span th:text="${event.location}"></span>
+
+    |
+
+     <span th:text="${event.arena}"></span>
+
+  </p>
+
+</div>
+
+<!-- ================= FIGHTERS ================= -->
+
+<div class="container mt-5">
+
+  <div class="row align-items-center">
+
+    <div class="col-lg-5"
+         th:each="fighter, stat : ${fighters}"
+         th:if="${stat.index==0}">
+
+      <div class="card fighter-card text-white">
+
+        <img th:src="${fighter.imageUrl}"
+             class="fighter-img">
+
+        <div class="card-body text-center">
+
+          <h2 th:text="${fighter.name}"></h2>
+
+          <h5 class="text-danger"
+              th:text="${fighter.weightClass}">
+          </h5>
+
+          <p>
+
+            Nationality :
+            <span th:text="${fighter.nationality}">
+                        </span>
+
+          </p>
+
+          <p>
+
+             Record :
+
+            <span th:text="${fighter.wins}"></span>
+
+            -
+
+            <span th:text="${fighter.losses}"></span>
+
+          </p>
+
+          <a class="btn btn-danger"
+
+             th:href="@{/fighter/{id}(id=${fighter.id})}">
+
+            View Profile
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- VS -->
+
+    <div class="col-lg-2 text-center">
+
+      <div class="vs">
+
+        VS
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-5"
+         th:each="fighter, stat : ${fighters}"
+         th:if="${stat.index==1}">
+
+      <div class="card fighter-card text-white">
+
+        <img th:src="${fighter.imageUrl}"
+             class="fighter-img">
+
+        <div class="card-body text-center">
+
+          <h2 th:text="${fighter.name}"></h2>
+
+          <h5 class="text-danger"
+              th:text="${fighter.weightClass}">
+          </h5>
+
+          <p>
+
+            Nationality :
+            <span th:text="${fighter.nationality}">
+                        </span>
+
+          </p>
+
+          <p>
+
+             Record :
+
+            <span th:text="${fighter.wins}"></span>
+
+            -
+
+            <span th:text="${fighter.losses}"></span>
+
+          </p>
+
+          <a class="btn btn-danger"
+
+             th:href="@{/fighter/{id}(id=${fighter.id})}">
+
+            View Profile
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

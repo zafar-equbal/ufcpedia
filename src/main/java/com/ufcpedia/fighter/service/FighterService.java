@@ -30,7 +30,6 @@ public class FighterService {
     }
 
 
-
     public Fighter updateFighter(Long id, Fighter updatedFighter) {
         Fighter fighter = fighterRepository.findById(id).orElse(null);
 
@@ -44,6 +43,9 @@ public class FighterService {
             fighter.setDraws(updatedFighter.getDraws());
             fighter.setImageUrl(updatedFighter.getImageUrl());
             fighter.setAboutUrl(updatedFighter.getAboutUrl());
+            fighter.setHallOfFame(updatedFighter.getHallOfFame());
+            fighter.setHallOfFameYear(updatedFighter.getHallOfFameYear());
+            fighter.setRetired(updatedFighter.getRetired());
 
             return fighterRepository.save(fighter);
         }
@@ -67,7 +69,7 @@ public class FighterService {
     }
 
     public long getChampions() {
-        return fighterRepository.countByTitleIsNotNull();
+        return fighterRepository.findByCurrentChampionTrue().size();
     }
 
     public long getWeightClasses() {
@@ -77,12 +79,43 @@ public class FighterService {
     public long getEliteFighters() {
         return fighterRepository.countByWinsGreaterThanEqual(20);
     }
+
     public List<Fighter> getChampionsList() {
-        return fighterRepository.findByTitleIsNotNull();
+        return fighterRepository.findByCurrentChampionTrue();
     }
+
     public List<Fighter> getLatestFighters() {
 
         return fighterRepository.findTop4ByOrderByIdDesc();
 
+    }
+
+    public List<Fighter> getMainEventFighters(String mainEvent) {
+
+        String[] names = mainEvent.split("(?i)vs");
+
+        String fighter1 = names[0].trim();
+        String fighter2 = names[1].trim();
+
+        return fighterRepository.findByNameContainingIgnoreCaseOrNameContainingIgnoreCase(
+                fighter1,
+                fighter2
+        );
+    }
+
+    public List<Fighter> getRankings(String weightClass) {
+
+        return fighterRepository.findByWeightClassAndCurrentChampionTrue(weightClass);
+    }
+
+    public List<Fighter> getHallOfFame() {
+
+        return fighterRepository
+                .findByHallOfFameTrueOrderByHallOfFameYearDesc();
+
+    }
+
+    public List<Fighter> getCurrentChampions() {
+        return fighterRepository.findByCurrentChampionTrue();
     }
 }

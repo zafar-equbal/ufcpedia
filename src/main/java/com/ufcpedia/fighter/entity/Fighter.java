@@ -11,6 +11,8 @@ import org.hibernate.validator.constraints.URL;
 @Table(name = "fighters")
 public class Fighter {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -51,11 +53,22 @@ public class Fighter {
 
     private String title;
 
+    private Boolean hallOfFame = false;
+
+    private Integer hallOfFameYear;
+
+    private Boolean retired = false;
+
+    private Boolean currentChampion = false;
+
+
+
+
 
     public Fighter(){
     }
 
-    public Fighter(Long id, String name , String nickname ,String nationality, String weightClass, Integer wins , Integer losses, Integer draws, String imageUrl, String aboutUrl) {
+    public Fighter(Long id, String name , String nickname ,String nationality, String weightClass, Integer wins , Integer losses, Integer draws, String imageUrl, String aboutUrl ,Boolean currentChampion,Boolean hallOfFame,Integer hallOfFameYear,Boolean retired ) {
         this.id = id;
         this.name = name;
         this.nickname = nickname;
@@ -66,6 +79,11 @@ public class Fighter {
         this.draws = draws;
         this.imageUrl = imageUrl;
         this.aboutUrl = aboutUrl;
+        this.currentChampion=currentChampion;
+        this.hallOfFame=hallOfFame;
+        this.hallOfFameYear=hallOfFameYear;
+        this.retired=retired;
+
 
     }
 
@@ -155,6 +173,37 @@ public class Fighter {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Boolean getCurrentChampion() {
+        return currentChampion;
+    }
+
+    public void setCurrentChampion(Boolean currentChampion) {
+        this.currentChampion = currentChampion;
+    }
+    public Boolean getHallOfFame() {
+        return hallOfFame;
+    }
+
+    public void setHallOfFame(Boolean hallOfFame) {
+        this.hallOfFame = hallOfFame;
+    }
+
+    public Integer getHallOfFameYear() {
+        return hallOfFameYear;
+    }
+
+    public void setHallOfFameYear(Integer hallOfFameYear) {
+        this.hallOfFameYear = hallOfFameYear;
+    }
+
+    public Boolean getRetired() {
+        return retired;
+    }
+
+    public void setRetired(Boolean retired) {
+        this.retired = retired;
     }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.ufcpedia.fighter.entity.Fighter;
 import com.ufcpedia.fighter.service.FighterService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -29,10 +30,21 @@ public class PageController {
     }
 
     @GetMapping("/cards")
-    public String fighterCards(Model model) {
+    public String cards(
+            @RequestParam(required = false) String keyword,
+            Model model) {
 
-        model.addAttribute("fighters",
-                fighterService.getAllFighters());
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            model.addAttribute("fighters",
+                    fighterService.searchFighters(keyword));
+        } else {
+            model.addAttribute("fighters",
+                    fighterService.getAllFighters());
+        }
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("totalFighters",
+                fighterService.getAllFighters().size());
 
         return "cards";
     }

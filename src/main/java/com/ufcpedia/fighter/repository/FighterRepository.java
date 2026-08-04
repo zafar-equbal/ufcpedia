@@ -29,4 +29,16 @@ public interface FighterRepository extends JpaRepository<Fighter, Long> {
     List<Fighter> findByTitleIsNotNull();
 
     List<Fighter> findTop4ByOrderByIdDesc();
+
+    List<Fighter> findByNameContainingIgnoreCaseOrNameContainingIgnoreCase(
+            String fighter1,
+            String fighter2
+    );
+    List<Fighter> findByWeightClassOrderByWinsDesc(String weightClass);
+
+    List<Fighter> findByCurrentChampionTrue();
+
+    List<Fighter> findByHallOfFameTrueOrderByHallOfFameYearDesc();
+
+    List<Fighter> findByWeightClassAndCurrentChampionTrue(String weightClass);
 }

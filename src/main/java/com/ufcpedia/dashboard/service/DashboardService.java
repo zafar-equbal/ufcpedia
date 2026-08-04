@@ -7,6 +7,8 @@ import com.ufcpedia.fighter.service.FighterService;
 import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.ufcpedia.news.entity.News;
+import com.ufcpedia.news.service.NewsService;
 
 
 import java.util.List;
@@ -21,6 +23,9 @@ public class DashboardService {
     @Autowired
     private FighterService fighterService;
 
+    @Autowired
+    private NewsService newsService;
+
     public Event getFeaturedEvent() {
         return eventService.getFeaturedEvent();
     }
@@ -30,16 +35,13 @@ public class DashboardService {
     }
 
     public long getChampions() {
-        return fighterService.getChampions();
+        return fighterService.getCurrentChampions().size();
     }
 
     public long getWeightClasses() {
         return fighterService.getWeightClasses();
     }
 
-    public long getEliteFighters() {
-        return fighterService.getEliteFighters();
-    }
 
 
     public List<Event> getUpcomingEvents() {
@@ -48,13 +50,19 @@ public class DashboardService {
 
     }
 
-    public List<Fighter> getChampionList(){
+    public List<Fighter> getChampionsList(){
         return fighterService.getChampionsList();
     }
 
     public List<Fighter> getLatestFighters() {
 
         return fighterService.getLatestFighters();
+
+    }
+
+    public List<News> getTopStories() {
+
+        return newsService.getTopStories();
 
     }
 

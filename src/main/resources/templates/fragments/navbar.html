@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-danger shadow-sm"
+     th:fragment="navbar">
+
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold fs-3 text-danger"
+           href="/">
+
+             UFCPEDIA
+
+        </a>
+
+        <!-- Mobile Toggle -->
+
+        <button class="navbar-toggler border-danger"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Menu -->
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3"
+                       href="/">
+                        Home
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3"
+                       href="/cards">
+                        Fighters
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3"
+                       href="/events">
+                        Events
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3"
+                       href="/rankings">
+                        Rankings
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3"
+                       href="/hall-of-fame">
+                        Hall Of Fame
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3"
+                       href="/news">
+                        Top Stories
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<style>
+
+    .navbar{
+
+        min-height:75px;
+
+    }
+
+    .navbar-brand{
+
+        letter-spacing:1px;
+
+    }
+
+    .nav-link{
+
+        color:white !important;
+
+        font-weight:500;
+
+        transition:0.3s;
+
+    }
+
+    .nav-link:hover{
+
+        color:#e10600 !important;
+
+    }
+
+    .navbar-toggler{
+
+        border-width:2px;
+
+    }
+
+    @media (max-width:991px){
+
+        .navbar{
+
+            padding-top:12px;
+
+            padding-bottom:12px;
+
+        }
+
+        .navbar-collapse{
+
+            margin-top:15px;
+
+            background:#111;
+
+            border-radius:12px;
+
+            padding:15px;
+
+        }
+
+        .nav-item{
+
+            text-align:center;
+
+            margin:6px 0;
+
+        }
+
+        .nav-link{
+
+            font-size:18px;
+
+        }
+
+    }
+
+</style>
+
+</body>
+
+</html>

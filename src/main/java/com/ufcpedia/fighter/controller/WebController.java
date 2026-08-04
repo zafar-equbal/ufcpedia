@@ -21,7 +21,7 @@ public class WebController {
     @Autowired
     private FighterService fighterService;
 
-    @GetMapping("/fighters-page")
+    @GetMapping("/fighters-web-page")
     public String fightersPage(
             @RequestParam(required = false) String keyword,
             Model model) {
