@@ -4,7 +4,7 @@ import com.ufcpedia.event.entity.Event;
 import com.ufcpedia.event.service.EventService;
 import com.ufcpedia.fighter.entity.Fighter;
 import com.ufcpedia.fighter.service.FighterService;
-import org.jspecify.annotations.Nullable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ufcpedia.news.entity.News;
